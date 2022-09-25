@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+body{
+    background-color: #212025;
+    /* color: #139256; */
+    color: #ffffff;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    
+    flex-direction: column;
+    max-width: 70%;
+    margin: auto;
+    margin-top: 6%;
+}
+
+.headr
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+.headr .gas-price
+{
+    padding: 20px;
+}
+.headr .gas-price a
+{
+    text-decoration: none;
+    color: #ffffff;
+    
+}
+.headr .gas-price a:hover{
+    
+    color: #ffffff;
+}
+
+.headr .gas-price p
+{
+    padding: 5px;
+}
+.box
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.box .box1
+{
+    background-color: #212025;
+    border: 1px solid #838181;
+    border-radius: 6px;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
