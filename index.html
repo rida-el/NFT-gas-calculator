@@ -1,37 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="headr">
-        <div class="gas-price">
-          <h1>1323$</h1>
-          <p>USD/ETH</p>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="headr">
+                <div class="gas-price">
+                    <h1 id="stock-price">0$</h1>
+                    <p>USD/ETH</p>
+                </div>
+                <div class="gas-price">
+                    <a href="">
+                        <h1 id="text-low" style="color: #22c55e">00</h1>
+                    </a>
+                    <p>LOW</p>
+                </div>
+                <div class="gas-price">
+                    <a href="">
+                        <h1 id="text-normal" style="color: #f97316">00</h1>
+                    </a>
+                    <p>NORMAL</p>
+                </div>
+                <div class="gas-price">
+                    <a href="">
+                        <h1 id="text-fast" style="color: #ef4444">00</h1>
+                    </a>
+                    <p>FAST</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box1">
+                    <h3>Rarible</h3>
+                    <div class="item">
+                        <p>Accept Bid</p>
+                        <span>4$</span>
+                        <p id="gas-price">0.003 Ether</p>
+                    </div>
+                    <div class="item">
+                        <p>Mint NFT</p>
+                        <span>5$</span>
+                        <p id="gas-price">0.004 Ether</p>
+                    </div>
+                    <div class="item">
+                        <p>Approve NFT</p>
+                        <span>4$</span>
+                        <p id="gas-price">0.003 Ether</p>
+                    </div>
+                    <div class="item">
+                        <p>Approve WETH</p>
+                        <span>4$</span>
+                        <p id="gas-price">0.003 Ether</p>
+                    </div>
+                    <div class="item">
+                        <p>Wrap ETH -> WETH</p>
+                        <span>4$</span>
+                        <p id="gas-price">0.003 Ether</p>
+                    </div>
+                </div>
+                <div class="box1">
+                    <h3>Foundation</h3>
+                </div>
+                <div class="box1">
+                    <h3>Opensea</h3>
+                </div>
+            </div>
         </div>
-        <div class="gas-price">
-          <a href=""><h1 style="color: #22c55e">1323$</h1></a>
-          <p>LOW</p>
-        </div>
-        <div class="gas-price">
-          <a href=""><h1 style="color: #f97316">1323$</h1></a>
-          <p>NORMAL</p>
-        </div>
-        <div class="gas-price">
-          <a href=""><h1 style="color: #ef4444">1323$</h1></a>
-          <p>FAST</p>
-        </div>
-      </div>
-      <div class="box">
-        <div class="box1"></div>
-        <div class="box1"></div>
-        <div class="box1"></div>
-      </div>
-    </div>
-  </body>
+        <!-- fetch('https://ethereum-api.xyz/gas-prices') -->
+        <script>
+        let ws = new WebSocket("wss://stream.binance.com/ws/ethusdt@trade");
+        let stockPrice = document.getElementById("stock-price");
+        ws.onmessage = function (event) {
+            let data = JSON.parse(event.data);
+            stockPrice.innerText = parseFloat(data.p).toFixed(2) + "$";
+            
+        };
+        function startLive() {
+            const textLow = document.getElementById("text-low");
+            const textNormal = document.getElementById("text-normal");
+            const textFast = document.getElementById("text-fast");
+            setInterval(() => {
+                fetch("https://ethereum-api.xyz/gas-prices")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        textLow.textContent = data.result.slow.price;
+                        textNormal.textContent = data.result.average.price;
+                        textFast.textContent = data.result.fast.price;
+                        // console.log(data.result.fast.price);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }, 2000);
+        }
+        document.addEventListener("DOMContentLoaded", startLive);
+        let plans = [
+            { title: "QR-code plan", monthlyPrice: 39, yearlyPrice: 139 },
+            { title: "All in one", monthlyPrice: 65, yearlyPrice: 139 },
+            { title: "Tablet Plan", monthlyPrice: 51, yearlyPrice: 139 },
+        ];
+        // let userFullnames = plans.map(function (element) {
+            
+        //      const title = document.getElementById("title");
+        //      const textNormal = document.getElementById("text-normal");
+        //      const textFast = document.getElementById("text-fast");
+        //     return `${element.title} ${element.monthlyPrice} ${element.yearlyPrice}`;
+        // })
+    </script>
+    </body>
+
 </html>
