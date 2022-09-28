@@ -8,7 +8,6 @@
         <title>Document</title>
         <link rel="stylesheet" href="./style.css" />
     </head>
-
     <body>
         <div class="container">
             <div class="headr">
@@ -17,19 +16,19 @@
                     <p>USD/ETH</p>
                 </div>
                 <div class="gas-price">
-                    <a href="">
+                    <a onclick="hidePrice('low')">
                         <h1 id="text-low" style="color: #22c55e">00</h1>
                     </a>
                     <p>LOW</p>
                 </div>
                 <div class="gas-price">
-                    <a href="">
+                    <a onclick="hidePrice('normal')">
                         <h1 id="text-normal" style="color: #f97316">00</h1>
                     </a>
                     <p>NORMAL</p>
                 </div>
                 <div class="gas-price">
-                    <a href="">
+                    <a onclick="hidePrice('fast')">
                         <h1 id="text-fast" style="color: #ef4444">00</h1>
                     </a>
                     <p>FAST</p>
@@ -38,96 +37,40 @@
             <div class="box">
                 <div class="box1">
                     <h3>Rarible</h3>
-                    <div class="item">
-                        <p>Accept Bid</p>
-                        <span>4$</span>
-                        <p id="gas-price">0.003 Ether</p>
+                    <div id="normal3">
+                        <div class="section-center3">
                     </div>
-                    <div class="item">
-                        <p>Mint NFT</p>
-                        <span>5$</span>
-                        <p id="gas-price">0.004 Ether</p>
                     </div>
-                    <div class="item">
-                        <p>Approve NFT</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Approve WETH</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Wrap ETH -> WETH</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
+                    <div id="fast3">
+                        <div class="section-center3fast">
+                        </div>
                     </div>
                 </div>
                 <div class="box1">
                     <h3>Foundation</h3>
-                    <div class="item">
-                        <p>List NFT</p>
-                        <span>5$</span>
-                        <p id="gas-price">0.004 Ether</p>
+                    <div id="normal2">
+                        <div class="section-center2">
+                        </div>
                     </div>
-                    <div class="item">
-                        <p>Mint NFT</p>
-                        <span>5$</span>
-                        <p id="gas-price">0.004 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Create Collection</p>
-                        <span>3$</span>
-                        <p id="gas-price">0.002 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Change Price</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Settle Auction</p>
-                        <span>5$</span>
-                        <p id="gas-price">0.003 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Place Bid</p>
-                        <span>1$</span>
-                        <p id="gas-price">0.001 Ether</p>
+                    <div id="fast2">
+                        <div class="section-center2fast">
+                        </div>
                     </div>
                 </div>
                 <div class="box1">
                     <h3>Opensea</h3>
-                    <div class="item">
-                        <p>Register Account</p>
-                        <span>7$</span>
-                        <p id="gas-price">0.005 Ether</p>
+                    <div id="normal">
+                        <div class="section-center">
+                        </div>
                     </div>
-                    <div class="item">
-                        <p>Approve NFT</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Buy NFT</p>
-                        <span>5$</span>
-                        <p id="gas-price">0.004 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Approve WETH</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
-                    </div>
-                    <div class="item">
-                        <p>Wrap ETH -> WETH</p>
-                        <span>0$</span>
-                        <p id="gas-price">0 Ether</p>
+                    <div id="fast">
+                        <div class="section-center-fast">
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <!-- fetch('https://ethereum-api.xyz/gas-prices') -->
         <script>
         let ws = new WebSocket("wss://stream.binance.com/ws/ethusdt@trade");
         let stockPrice = document.getElementById("stock-price");
@@ -147,7 +90,6 @@
                         textLow.textContent = data.result.slow.price;
                         textNormal.textContent = data.result.average.price;
                         textFast.textContent = data.result.fast.price;
-                        // console.log(data.result.fast.price);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -155,19 +97,125 @@
             }, 2000);
         }
         document.addEventListener("DOMContentLoaded", startLive);
-        let plans = [
-            { title: "QR-code plan", monthlyPrice: 39, yearlyPrice: 139 },
-            { title: "All in one", monthlyPrice: 65, yearlyPrice: 139 },
-            { title: "Tablet Plan", monthlyPrice: 51, yearlyPrice: 139 },
+        let opensea = [
+            { title: "Register Account", price: 7,fastprice: 27 ,eth: "0.005 Ether",ethfast: "0.02 Ether" },
+            { title: "Approve NFT", price: 0,fastprice: 3, eth: "0 Ether",ethfast: "0.002 Ether"},
+            { title: "Buy NFT", price: 5,fastprice: 21, eth: "0.004 Ether",ethfast: "0.015 Ether"},
+            { title: "Approve WETH", price: 0,fastprice: 2, eth: "0 Ether",ethfast: "0.002 Ether"},
+            { title: "Wrap ETH -> WETH", price: 0,fastprice: 2, eth: "0 Ether",ethfast: "0.001 Ether"}
         ];
-        // let userFullnames = plans.map(function (element) {
-            
-        //      const title = document.getElementById("title");
-        //      const textNormal = document.getElementById("text-normal");
-        //      const textFast = document.getElementById("text-fast");
-        //     return `${element.title} ${element.monthlyPrice} ${element.yearlyPrice}`;
-        // })
+        let Foundation = [
+            { title: "List NFT", price: 5,fastprice: 22, eth: "0.004 Ether",ethfast: "0.016 Ether"},
+            { title: "Mint NFT", price: 5,fastprice: 22, eth: "0.004 Ether",ethfast: "0.016 Ether"},
+            { title: "Create Collection", price: 3,fastprice: 13, eth: "0.002 Ether",ethfast: "0.009 Ether"},
+            { title: "Change Price", price: 0,fastprice: 2, eth: "0 Ether",ethfast: "0.001 Ether"},
+            { title: "Settle Auction", price: 4,fastprice: 18, eth: "0.003 Ether",ethfast: "0.013 Ether"},
+            { title: "Place Bid", price: 1,fastprice: 4, eth: "0.001 Ether",ethfast: "0.003 Ether"}
+        ];
+        let Rarible = [
+            { title: "Accept Bid", price: 4, eth: "0.003 Ether",fastprice: 17,ethfast: "0.012 Ether" },
+            { title: "Mint NFT", price: 5, eth: "0.004 Ether",fastprice: 19,ethfast: "0.014 Ether" },
+            { title: "Approve NFT", price: 0, eth: "0 Ether",fastprice: 3,ethfast: "0.002 Ether" },
+            { title: "Approve WETH", price: 0, eth: "0 Ether",fastprice: 2,ethfast: "0.002 Ether" },
+            { title: "Wrap ETH -> WETH", price: 0, eth: "0 Ether",fastprice: 2,ethfast: "0.001 Ether" }
+        ];
+        function hidePrice(id)
+        {
+            const p1 = document.getElementById("normal");
+            const p2 = document.getElementById("fast");
+            const p3 = document.getElementById("normal2");
+            const p4 = document.getElementById("fast2");
+            const p5 = document.getElementById("normal3");
+            const p6 = document.getElementById("fast3");
+            if(id == 'fast')
+            {
+                p1.style.display = "none";
+                p2.style.display = "block";
+                p3.style.display = "none";
+                p4.style.display = "block";
+                p5.style.display = "none";
+                p6.style.display = "block";
+            }else if (id == 'normal' || id == 'low'){
+                p1.style.display = "block";
+                p2.style.display = "none";
+                p3.style.display = "block";
+                p4.style.display = "none";
+                p5.style.display = "block";
+                p6.style.display = "none";
+            }
+        }
+        const sectionCenter = document.querySelector(".section-center");
+        window.addEventListener("load", function () {
+            let displayData = opensea.map(function(item) {
+                return `<div class="item">
+                        <p>${item.title}</p>
+                        <span>${item.price}$</span>
+                        <p id="gas-price">${item.eth}</p>
+                    </div>`;
+            });
+            displayData = displayData.join("");
+            sectionCenter.innerHTML = displayData;
+        });
+        const sectionCenterfast = document.querySelector(".section-center-fast");
+        window.addEventListener("load", function () {
+            let displayData = opensea.map(function(item) {
+                return `<div class="item">
+                        <p>${item.title}</p>
+                        <span>${item.fastprice}$</span>
+                        <p id="gas-price">${item.ethfast}</p>
+                    </div>`;
+            });
+            displayData = displayData.join("");
+            sectionCenterfast.innerHTML = displayData;
+        });
+        const sectionCenter2 = document.querySelector(".section-center2");
+        window.addEventListener("load", function () {
+            let displayFoundation = Foundation.map(function(item) {
+                return `<div class="item">
+                        <p>${item.title}</p>
+                        <span>${item.price}$</span>
+                        <p id="gas-price">${item.eth}</p>
+                    </div>`;
+            });
+            displayFoundation = displayFoundation.join("");
+            sectionCenter2.innerHTML = displayFoundation;
+        });
+            const sectionCenter2fast = document.querySelector(".section-center2fast");
+            window.addEventListener("load", function () {
+                let displayDatafoun = Foundation.map(function(item) {
+                    return `<div class="item">
+                            <p>${item.title}</p>
+                            <span>${item.fastprice}$</span>
+                            <p id="gas-price">${item.ethfast}</p>
+                        </div>`;
+                });
+                displayDatafoun = displayDatafoun.join("");
+                sectionCenter2fast.innerHTML = displayDatafoun;
+            });
+        const sectionCenter3 = document.querySelector(".section-center3");
+        window.addEventListener("load", function () {
+            let displayRarible = Rarible.map(function(item) {
+                return `<div class="item">
+                        <p>${item.title}</p>
+                        <span>${item.price}$</span>
+                        <p id="gas-price">${item.eth}</p>
+                    </div>`;
+            });
+            displayRarible = displayRarible.join("");
+            sectionCenter3.innerHTML = displayRarible;
+        });
+        const sectionCenter3fast = document.querySelector(".section-center3fast");
+        window.addEventListener("load", function () {
+            let displayRariblefast = Rarible.map(function(item) {
+                return `<div class="item">
+                        <p>${item.title}</p>
+                        <span>${item.fastprice}$</span>
+                        <p id="gas-price">${item.ethfast}</p>
+                    </div>`;
+            });
+            displayRariblefast = displayRariblefast.join("");
+            sectionCenter3fast.innerHTML = displayRariblefast;
+        }); 
     </script>
     </body>
-
 </html>
