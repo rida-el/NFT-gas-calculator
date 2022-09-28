@@ -34,7 +34,7 @@ body{
 {
     text-decoration: none;
     color: #ffffff;
-    
+    cursor: pointer;
 }
 .headr .gas-price a:hover{
     
